@@ -1,0 +1,68 @@
+﻿<!DOCTYPE html>
+
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="utf-8" />
+    <title></title>
+    <link rel="stylesheet" href="./css/tasks.css" />
+    <link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
+    <script src="https://code.jquery.com/jquery-3.1.0.min.js"></script>
+</head>
+<body>
+
+
+        <div class="bg">
+
+           <div id="title">Get It Done.</div>
+           <div id="addItem" class="text">Add a new item:</div>
+	   	<form id="form" action="/task" method="post">
+			Task Name: <input type="text" name="name"></input>
+			Priority: 
+				<select name="priority">
+					<option value="1">1</option>
+					<option value="2">2</option>
+					<option value="3">3</option>
+					<option value="4">4</option>
+					<option value="5">5</option>
+				</select>
+			Difficulty:
+				<select name="difficulty">
+					<option value="1">1</option>
+					<option value="2">2</option>
+					<option value="3">3</option>
+					<option value="4">4</option>
+					<option value="5">5</option>
+				</select><br><br>
+				<center>
+				Comments (optional):<br> 
+				<textarea name="description" rows="2" cols="20"></textarea>
+				</center>
+			<center><input type="submit" ealue="Go!" class="btn btn-info"></input></center>
+		</form>
+
+	   <div id="tasks" class="text">Your to do list:</div>
+
+                <table id="table" class="table table-dark" >
+                    <thead>
+                    <th>Task</th>
+                    <th>Description</th>
+                    <th>Priority</th>
+                    <th>Difficulty</th>
+                    </thead>
+                    <tbody
+                        	{{#each tasks}}
+		       		<tr>
+                    		<td>{{this.name}}</td>
+                    		<td>{{this.description}}</td>
+                    		<td>{{this.priority}}</td>
+                    		<td>{{this.difficulty}}</td>
+				<td><a href="/task/{{this.id}}">Update</td>
+				<td><button onclick = "deletetask({{this.id}})">Done</button></td>
+				</tr>
+                    		{{/each}}
+                    </tbody>
+                </table>
+	
+        </div>
+</body>
+</html>
